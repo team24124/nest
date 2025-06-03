@@ -1,5 +1,8 @@
 # Convert to json file for JavaScript
 import json
+import tkinter.messagebox
+import traceback
+
 
 def flatten_team_data_team(team):
     return {
@@ -25,10 +28,15 @@ def flatten_team_data_team(team):
         'opr_end': team.opr_end
     }
 
-def save_team_data(teams):
+def save_team_data(teams, path):
     # Flatten all team objects (assuming teams is a dict)
     data = {team_number: flatten_team_data_team(team) for team_number, team in teams.items()}
 
     # Save to file
-    with open("world_team_data_latest.json", "w") as f:
-        json.dump(data, f, indent=2)
+    if path:
+        try:
+            with open(path, "w") as f:
+                json.dump(data, f, indent=2)
+        except Exception as e:
+            traceback.print_exception(type(e), e, e.__traceback__)
+            tkinter.messagebox.showerror(title="Export to JSON", message="Something went wrong while saving the file")

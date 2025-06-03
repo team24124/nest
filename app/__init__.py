@@ -4,9 +4,12 @@ from concurrent.futures.thread import ThreadPoolExecutor
 from multiprocessing.pool import ThreadPool
 
 from app.Controller import Controller
+from app.widget.BarGraph import BarGraph
 from app.widget.EventDashboard import EventDashboard
 from app.widget.MainControl import MainControl
 from app.widget.ConsoleOutput import ConsoleOutput, TextRedirector
+from app.widget.StatScatterPlot import StatScatterPlot
+from app.widget.TeamScatterPlot import TeamScatterPlot
 from stats.event import get_all_events_by_teams, Event
 
 
@@ -38,13 +41,23 @@ class App(tk.Tk):
         self.output = ConsoleOutput(self, controller=self.controller)
         self.output.grid(row=2, column=0, padx=5, pady=5, sticky="news")
 
+        self.bargraph = BarGraph(self, controller=self.controller)
+        self.bargraph.grid(row=0, column=1, padx=5, pady=5, sticky="news")
+
+        self.teamscatter = TeamScatterPlot(self, controller=self.controller)
+        self.teamscatter.grid(row=1, column=1, padx=5, pady=5, sticky="news")
+
+        self.statscatter = StatScatterPlot(self, controller=self.controller)
+        self.statscatter.grid(row=2, column=1, padx=5, pady=5, sticky="news")
+
         self.redirect_sysstd() # Redirect console output to the app
 
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=1)
+        self.columnconfigure(0, weight=1, uniform="group1")
+        self.columnconfigure(1, weight=1, uniform="group1")
+
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
-        self.rowconfigure(2, weight=4)
+        self.rowconfigure(2, weight=2)
 
         # Run
         self.mainloop()

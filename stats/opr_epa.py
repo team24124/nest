@@ -134,7 +134,7 @@ def calculate_event_epa_opr(teams, region_code=""):
     all_teams = calculate_all_epa_opr(events, region_code) # Calculate relevant epa/opr for all teams in those events
 
     print("Filtering for teams in the event")
-    event_teams = {team: all_teams[team] for team in teams} # Filter for teams at the specified event
+    event_teams = {str(team): all_teams[team] for team in teams} # Filter for teams at the specified event
 
     print("Calculations complete!")
     return event_teams
