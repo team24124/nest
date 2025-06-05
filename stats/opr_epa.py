@@ -159,14 +159,19 @@ def calculate_all_epa_opr(events, region_code=""):
     event_codes = [event[1] for event in events] # get event codes from tuple
 
     for event in event_codes:
-        print(f"Processing teams from event: {event}")
-        team_list, country_list, state_prov_list, city_list, home_region_list = create_team_list(event)
-        for index, team_number in enumerate(team_list):
-            if team_number not in all_teams:
-                all_teams[team_number] = Team(team_number, country_list[index], state_prov_list[index], city_list[index],
-                                              home_region_list[index], avg_total, avg_auto, avg_teleop)
+        team_list = create_team_list(event) # List of team numbers needed
+        team_number_list =  []
+        print(f"Processing {len(team_list.values())} teams from event: {event}")
+        for team_number in team_list:
+            team = team_list[team_number]
+            team_number_list.append(team.team_number)
 
-        game_matrix = create_game_matrix(event, team_list)
+            if team_number not in all_teams.keys():
+                all_teams[team.team_number] = team
+
+            if event in team.rankings:
+                all_teams[team.team_number].update_event_rank(event, team.rankings[event])
+        game_matrix = create_game_matrix(event, team_number_list)
 
         if len(game_matrix) > 0:  # skip events with no games
             # Get relevant scoring data from the event
@@ -178,19 +183,19 @@ def calculate_all_epa_opr(events, region_code=""):
             tele_opr = np.linalg.lstsq(game_matrix, tele_match_score)[0]
             end_opr = np.linalg.lstsq(game_matrix, end_match_score)[0]
 
-            for i in range(len(team_list)):
-                team_number = team_list[i] # Use team number from team list to get team
+            for i in range(len(team_number_list)):
+                team_number = team_number_list[i] # Use team number from team list to get team
                 team_obj = all_teams[team_number]
                 team_obj.update_opr(total_opr[i], auto_opr[i], tele_opr[i], end_opr[i])
 
             for i in range(0, len(game_matrix), 2):
                 red_index = np.where(np.array(game_matrix[i]) == 1)[0]
-                team1 = all_teams[team_list[red_index[0]]]
-                team2 = all_teams[team_list[red_index[1]]]
+                team1 = all_teams[team_number_list[red_index[0]]]
+                team2 = all_teams[team_number_list[red_index[1]]]
 
                 blue_index = np.where(np.array(game_matrix[i+1]) == 1)[0]
-                team3 = all_teams[team_list[blue_index[0]]]
-                team4 = all_teams[team_list[blue_index[1]]]
+                team3 = all_teams[team_number_list[blue_index[0]]]
+                team4 = all_teams[team_number_list[blue_index[1]]]
 
                 # Use i as the index the red alliances score, therefore i+1 will be the index of the blue alliances'
                 update_epa(team1, team2, team3, team4, total_match_score[i], total_match_score[i+1])

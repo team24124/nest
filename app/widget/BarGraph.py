@@ -11,15 +11,16 @@ class BarGraph(tk.Frame):
         self.controller = controller
         self.root = root
 
-        self.valid_team_options = ["epa_total", "auto_total", "tele_total", "opr", "opr_auto", "opr_tele", "opr_end"]
+        self.valid_team_options = ["epa_total", "auto_total", "tele_total", "opr", "opr_auto", "opr_tele", "opr_end",
+                                   "event_ranking"]
         self.selected_option = tk.StringVar(value=self.valid_team_options[0])
 
         stat_frame = tk.Frame(self)
 
         title_label = tk.Label(self, text="Teams vs. Statistic (Bar Graph)", font=("Segoe UI", 11))
         stat_label = tk.Label(stat_frame, text="Statistic")
-        stat_options = ttk.OptionMenu(stat_frame, self.selected_option, self.valid_team_options[0], *self.valid_team_options)
-
+        stat_options = ttk.OptionMenu(stat_frame, self.selected_option, self.valid_team_options[0],
+                                      *self.valid_team_options)
 
         self.graph_button = tk.Button(self, text="Graph", state="disabled", width=20, height=2, command=self.make_graph)
 

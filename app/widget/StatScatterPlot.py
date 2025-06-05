@@ -11,10 +11,12 @@ class StatScatterPlot(tk.Frame):
         self.controller = controller
         self.root = root
 
-        self.valid_x_options = ["epa_total", "auto_total", "tele_total", "opr", "opr_auto", "opr_tele", "opr_end"]
+        self.valid_x_options = ["epa_total", "auto_total", "tele_total", "opr", "opr_auto", "opr_tele", "opr_end",
+                                "event_ranking"]
         self.selected_x_option = tk.StringVar(value="epa_total")
 
-        self.valid_y_options = ["epa_total", "auto_total", "tele_total", "opr", "opr_auto", "opr_tele", "opr_end"]
+        self.valid_y_options = ["epa_total", "auto_total", "tele_total", "opr", "opr_auto", "opr_tele", "opr_end",
+                                "event_ranking"]
         self.selected_y_option = tk.StringVar(value="opr")
 
         stat_frame = tk.Frame(self)
@@ -23,14 +25,14 @@ class StatScatterPlot(tk.Frame):
         stat_x_label = tk.Label(stat_frame, text="X Axis")
         stat_y_label = tk.Label(stat_frame, text="Y Axis")
         stat_x_options = ttk.OptionMenu(stat_frame, self.selected_x_option, "epa_total", *self.valid_x_options)
-        stat_y_options = ttk.OptionMenu(stat_frame, self.selected_y_option, "opr",*self.valid_y_options)
+        stat_y_options = ttk.OptionMenu(stat_frame, self.selected_y_option, "opr", *self.valid_y_options)
 
         self.graph_button = tk.Button(self, text="Graph", state="disabled", width=20, height=2, command=self.make_graph)
 
-        stat_x_label.grid(row=0, column=0, padx=5, pady=5)
-        stat_x_options.grid(row=0, column=1, padx=5, pady=5)
-        stat_y_label.grid(row=1, column=0, padx=5, pady=5)
-        stat_y_options.grid(row=1, column=1, padx=5, pady=5)
+        stat_x_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
+        stat_x_options.grid(row=0, column=1, padx=5, pady=5, sticky="w")
+        stat_y_label.grid(row=1, column=0, padx=5, pady=5, sticky="w")
+        stat_y_options.grid(row=1, column=1, padx=5, pady=5, sticky="w")
 
         title_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
         stat_frame.grid(row=2, column=0, padx=5, pady=5, sticky="w")

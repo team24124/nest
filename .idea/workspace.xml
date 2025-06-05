@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="readme">
-      <change afterPath="$PROJECT_DIR$/app/widget/BarGraph.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/widget/TeamScatterPlot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphing/graph.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="added requirements.txt and graphs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/widget/MainControl.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/MainControl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/export.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/export.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/BarGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/BarGraph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphing/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing/graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/event.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stats/opr_epa.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/opr_epa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/team.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/team.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,24 +50,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for test_retrieve_data.TestRetrieveData.executor": "Run",
-    "Python tests.Python tests in test_retrieve_data.py.executor": "Run",
-    "Python.epa.executor": "Run",
-    "Python.event.executor": "Run",
-    "Python.graph.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.opr.executor": "Run",
-    "Python.opr_epa (1).executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for test_retrieve_data.TestRetrieveData.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_retrieve_data.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.epa.executor&quot;: &quot;Run&quot;,
+    &quot;Python.event.executor&quot;: &quot;Run&quot;,
+    &quot;Python.graph.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.opr.executor&quot;: &quot;Run&quot;,
+    &quot;Python.opr_epa (1).executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\J\Documents\Code\Python\stats-app\app\widget" />
@@ -192,9 +189,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.event" />
         <item itemvalue="Python.graph" />
         <item itemvalue="Python.opr_epa (1)" />
-        <item itemvalue="Python.event" />
         <item itemvalue="Python.epa" />
       </list>
     </recent_temporary>
@@ -230,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748836813849</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added requirements.txt and graphs">
+      <option name="closed" value="true" />
+      <created>1748923406785</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1748923406785</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -247,6 +252,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial" />
     <MESSAGE value="readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="readme" />
+    <MESSAGE value="added requirements.txt and graphs" />
+    <option name="LAST_COMMIT_MESSAGE" value="added requirements.txt and graphs" />
   </component>
 </project>

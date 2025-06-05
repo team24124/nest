@@ -4,6 +4,7 @@ from typing import List
 import requests
 from datetime import datetime
 from stats.data import get_auth
+from stats.team import Team
 
 
 def create_team_list(event_code):
@@ -12,30 +13,34 @@ def create_team_list(event_code):
 
   :param event_code: FIRST Event Code
   :return:
-    team_list (List of participating teams),
-    country (List of origin countries)
-    state_prov (List of originating states/provinces)
-    city (List of originating cities)
-    home_region (List of home regions)
+    Dictionary of team objects
   """
 
   team_response = requests.get("https://ftc-api.firstinspires.org/v2.0/2024/teams?eventCode="+event_code, auth=get_auth())
   teams_at_comp = team_response.json()['teams']
 
-  # Print out the team numbers for each of the teams at the competition
-  team_list = []
-  state_prov = []
-  country = []
-  city = []
-  home_region = []
-  for team in teams_at_comp:
-    team_list.append((team['teamNumber']))
-    state_prov.append(team['stateProv'])
-    country.append(team['country'])
-    city.append(team['city'])
-    home_region.append(team['homeRegion'])
+  ranking_response = requests.get("https://ftc-api.firstinspires.org/v2.0/2024/rankings/"+event_code, auth=get_auth())
+  rankings = ranking_response.json()['rankings']
 
-  return team_list, country, state_prov, city, home_region
+  # Print out the team numbers for each of the teams at the competition
+
+
+  teams = {}
+
+  for team in teams_at_comp:
+    team_number = team['teamNumber']
+    state_prov = team['stateProv']
+    country = team['country']
+    city = team['city']
+    home_region = team['homeRegion']
+    teams[team_number] = Team(team_number, country, state_prov, city, home_region)
+
+    # Find team rank
+    event_ranking = next((rank for rank in rankings if rank["teamNumber"] == team_number), None)
+    if event_ranking is not None:
+      teams[team_number].update_event_rank(event_code, event_ranking['rank'])
+
+  return teams
 
 def validate_event(event_code) -> Event | None:
   """
@@ -136,4 +141,4 @@ class Event:
     self.state_province = event['stateprov']
     self.city = event['city']
 
-    self.team_list = create_team_list(event_code)[0]
+    self.team_list = create_team_list(event_code)

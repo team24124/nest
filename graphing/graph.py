@@ -53,8 +53,15 @@ def make_stat_scatter(event, teams, stat_x: StringVar, stat_y: StringVar):
 
     for team in teams.values():
         stats = vars(team)
-        data_x.append(stats[stat_x_value])
-        data_y.append(stats[stat_y_value])
+        if stat_x_value == 'event_ranking':
+            data_x.append(stats['rankings'][event.event_code])
+        else:
+            data_x.append(stats[stat_x_value])
+
+        if stat_y_value == 'event_ranking':
+            data_y.append(stats['rankings'][event.event_code])
+        else:
+            data_y.append(stats[stat_y_value])
         team_numbers.append(team.team_number)
 
     figure = go.Figure(data=go.Scatter(

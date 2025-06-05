@@ -1,28 +1,34 @@
 # Create team object to store information
 class Team:
-    def __init__(self, team_number, country, state_prov, city, home_region, initial_epa, initial_auto, initial_tele):
+    def __init__(self, team_number, country, state_prov, city, home_region):
         self.games_played = 0
         self.team_number = team_number
+
+        # Rankings at each event
+        self.rankings = {}
 
         self.country = country
         self.state_prov = state_prov
         self.city = city
         self.home_region = home_region
 
-        self.epa_total = initial_epa
-        self.auto_total = initial_auto
-        self.tele_total = initial_tele
-        self.historical_epa = [initial_epa]
-        self.historical_auto_epa = [initial_auto]
-        self.historical_tele_epa = [initial_tele]
+        self.epa_total = 0
+        self.auto_total = 0
+        self.tele_total = 0
+        self.historical_epa = []
+        self.historical_auto_epa = []
+        self.historical_tele_epa = []
         self.opr_total_vals = []
         self.opr_auto_vals = []
         self.opr_tele_vals = []
         self.opr_end_vals = []
-        self.opr = initial_epa
-        self.opr_auto = initial_auto
-        self.opr_tele = initial_tele
-        self.opr_end = initial_epa - initial_auto - initial_tele
+        self.opr = 0
+        self.opr_auto = 0
+        self.opr_tele = 0
+        self.opr_end = 0
+
+    def update_event_rank(self, event_code, event_rank):
+        self.rankings[event_code] = event_rank
 
     def update_epa(self, new_epa):
         self.epa_total = new_epa
