@@ -26,7 +26,6 @@ class App(tk.Tk):
         # Setup Controller
         self.controller = Controller()
 
-
         # Icon
         icon = tk.PhotoImage(file='./app/favicon.png')
         self.wm_iconphoto(False, icon)
