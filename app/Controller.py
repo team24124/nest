@@ -1,9 +1,12 @@
+from stats.team import Team
+
+
 class Controller:
     """
     Centralized controller for manipulating shared data across the entire app
     """
     def __init__(self):
-        self.shared_data = {"event_code": None, "event": None, "region_code": None, "teams": None}
+        self.shared_data = {"event_code": None, "event": None, "region_code": None, "teams": None }
 
     def is_event_selected(self):
         return self.shared_data["event_code"] is not None

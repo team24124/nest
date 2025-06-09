@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="added requirements.txt and graphs">
+    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Added top team inclusion for TeamScatterPlot.py">
+      <change afterPath="$PROJECT_DIR$/app/widget/VerticalScrolledFrame.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/window/TeamStatWindow.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/window/TeamWindow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/widget/BarGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/BarGraph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/EventDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/EventDashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/MainControl.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/MainControl.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphing/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing/graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/TeamScatterPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/TeamScatterPlot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/TeamProfile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphing/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing/search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stats/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/opr_epa.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/opr_epa.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stats/team.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/team.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +68,7 @@
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.opr.executor&quot;: &quot;Run&quot;,
     &quot;Python.opr_epa (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.search.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
@@ -76,28 +83,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="epa" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="stats-app" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/stats" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stats/epa.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="event" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="stats-app" />
       <option name="ENV_FILES" value="" />
@@ -186,13 +171,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="search" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="stats-app" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/graphing" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graphing/search.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.search" />
         <item itemvalue="Python.event" />
         <item itemvalue="Python.graph" />
         <item itemvalue="Python.opr_epa (1)" />
-        <item itemvalue="Python.epa" />
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +242,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748923406785</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added event rankings">
+      <option name="closed" value="true" />
+      <created>1749098075165</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1749098075165</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added top team inclusion for TeamScatterPlot.py">
+      <option name="closed" value="true" />
+      <created>1749184327940</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1749184327940</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -253,6 +276,8 @@
     <MESSAGE value="initial" />
     <MESSAGE value="readme" />
     <MESSAGE value="added requirements.txt and graphs" />
-    <option name="LAST_COMMIT_MESSAGE" value="added requirements.txt and graphs" />
+    <MESSAGE value="Added event rankings" />
+    <MESSAGE value="Added top team inclusion for TeamScatterPlot.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added top team inclusion for TeamScatterPlot.py" />
   </component>
 </project>

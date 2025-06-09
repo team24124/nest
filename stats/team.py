@@ -1,8 +1,9 @@
 # Create team object to store information
 class Team:
-    def __init__(self, team_number, country, state_prov, city, home_region):
+    def __init__(self, team_number, name, country, state_prov, city, home_region):
         self.games_played = 0
         self.team_number = team_number
+        self.name = name
 
         # Rankings at each event
         self.rankings = {}

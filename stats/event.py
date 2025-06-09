@@ -33,7 +33,8 @@ def create_team_list(event_code):
     country = team['country']
     city = team['city']
     home_region = team['homeRegion']
-    teams[team_number] = Team(team_number, country, state_prov, city, home_region)
+    name = team['nameShort']
+    teams[team_number] = Team(team_number, name, country, state_prov, city, home_region)
 
     # Find team rank
     event_ranking = next((rank for rank in rankings if rank["teamNumber"] == team_number), None)

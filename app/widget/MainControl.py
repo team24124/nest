@@ -20,31 +20,36 @@ class MainControl(tk.Frame):
         self.executor = ThreadPoolExecutor(max_workers=1)
         title_label = tk.Label(self, text="Main Control", font=("Segoe UI", 11))
 
+        # Event Code Entry & Button
         event_frame = tk.Frame(self)
         event_label = tk.Label(event_frame, text="Event Code", font=("Segoe UI", 9))
         self.event_entry = ttk.Entry(event_frame, width=20)
         self.event_submit = tk.Button(event_frame, text="Check", command=self.on_click)
 
-        region_label = tk.Label(event_frame, text="Region")
-        self.region_entry = ttk.Entry(event_frame, width=20)
+        # Region Code Entry
+        region_frame = tk.Frame(self)
+        region_label = tk.Label(region_frame, text="Region")
+        self.region_entry = ttk.Entry(region_frame, width=20)
 
-        self.export_button = tk.Button(event_frame, text="Export to JSON", state="disabled", command=self.export_json)
+        self.export_button = tk.Button(self, text="Export to JSON", state="disabled", command=self.export_json)
 
-        region_label.grid(row=0, column=0, padx=5, pady=5)
-        self.region_entry.grid(row=0, column=1, padx=5, pady=5)
+        event_label.grid(row=0, column=0, padx=5)
+        self.event_entry.grid(row=0, column=1, padx=5)
+        self.event_submit.grid(row=0, column=2, padx=5)
 
-        event_label.grid(row=0, column=0, padx=5, pady=5)
-        self.event_entry.grid(row=0, column=1, padx=5, pady=5)
-        self.event_submit.grid(row=0, column=2, padx=5, pady=5)
-        region_label.grid(row=1, column=0)
-        self.region_entry.grid(row=1, column=1)
+        region_label.grid(row=1, column=0, padx=5)
+        self.region_entry.grid(row=1, column=1, padx=5)
+
+        # TODO: Settings Menu (season setting)
 
         self.processing_label = tk.Label(self, text="Processing Data...")
 
-        title_label.pack(side="top", anchor="w")
-        event_frame.pack(side="left", anchor="nw")
+        title_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
+        event_frame.grid(row=1, column=0, padx=5, pady=5, sticky="w")
+        region_frame.grid(row=2, column=0, padx=5, pady=5, sticky="w")
+        self.export_button.grid(row=3, column=0, padx=5, pady=5, sticky="sw")
 
-        self.export_button.grid(row=2, column=0, padx=10, pady=5)
+        self.rowconfigure(3, weight=1)
 
         self.bind('<<event_code_updated>>', lambda event: self.handle_event_update(event))
 
@@ -82,7 +87,7 @@ class MainControl(tk.Frame):
     def calculate_data(self, event):
         region_code = self.controller.shared_data["region_code"]
         future = self.executor.submit(calculate_event_epa_opr, event.team_list, region_code)
-        self.processing_label.pack(side="bottom", anchor="s")
+        self.processing_label.grid(row=3, column=1, padx=5, pady=5, sticky="se")
         self.event_submit.config(state="disabled")
         self.event_entry.config(state="disabled")
         self.region_entry.config(state="disabled")
@@ -92,7 +97,7 @@ class MainControl(tk.Frame):
         if future.done():
             try:
                 result: dict[str, Team] = future.result()
-                self.processing_label.pack_forget()
+                self.processing_label.grid_forget()
                 self.event_submit.config(state="normal")
                 self.event_entry.config(state="normal")
                 self.region_entry.config(state="normal")

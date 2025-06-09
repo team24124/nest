@@ -19,9 +19,9 @@ class StatScatterPlot(tk.Frame):
                                 "event_ranking"]
         self.selected_y_option = tk.StringVar(value="opr")
 
-        stat_frame = tk.Frame(self)
-
         title_label = tk.Label(self, text="Statistic vs. Statistic (Scatterplot)", font=("Segoe UI", 11))
+
+        stat_frame = tk.Frame(self)
         stat_x_label = tk.Label(stat_frame, text="X Axis")
         stat_y_label = tk.Label(stat_frame, text="Y Axis")
         stat_x_options = ttk.OptionMenu(stat_frame, self.selected_x_option, "epa_total", *self.valid_x_options)
@@ -36,7 +36,9 @@ class StatScatterPlot(tk.Frame):
 
         title_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
         stat_frame.grid(row=2, column=0, padx=5, pady=5, sticky="w")
-        self.graph_button.grid(row=3, column=0, padx=5, pady=5, sticky="w")
+        self.graph_button.grid(row=3, column=0, padx=5, pady=5, sticky="sw")
+
+        self.rowconfigure(3, weight=1)
 
         self.bind('<<team_stats_updated>>', lambda event: self.handle_stats_update(event))
 

@@ -20,7 +20,7 @@ class TeamScatterPlot(tk.Frame):
                                    "opr_auto_vals", "opr_tele_vals", "opr_end_vals"]
         self.selected_option = tk.StringVar(value=self.valid_team_options[0])
 
-        title_label = tk.Label(self, text="Historical Statistics (Scatterplot)", font=("Segoe UI", 11))
+        title_label = tk.Label(self, text="Historical Statistics (Line Graph)", font=("Segoe UI", 11))
 
         stat_frame = tk.Frame(self)
         stat_label = tk.Label(stat_frame, text="Statistic")
@@ -49,7 +49,9 @@ class TeamScatterPlot(tk.Frame):
         stat_frame.grid(row=1, column=0, padx=5, pady=5, sticky="w")
         team_frame.grid(row=2, column=0, padx=5, pady=5, sticky="w")
         num_team_frame.grid(row=3, column=0, padx=5, pady=5, sticky="w")
-        self.graph_button.grid(row=4, column=0, padx=5, pady=5, sticky="w")
+        self.graph_button.grid(row=4, column=0, padx=5, pady=5, sticky="sw")
+
+        self.rowconfigure(4, weight=1)
 
         self.bind('<<team_stats_updated>>', lambda event: self.handle_stats_update(event))
 

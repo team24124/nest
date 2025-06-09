@@ -15,9 +15,9 @@ class BarGraph(tk.Frame):
                                    "event_ranking"]
         self.selected_option = tk.StringVar(value=self.valid_team_options[0])
 
-        stat_frame = tk.Frame(self)
-
         title_label = tk.Label(self, text="Teams vs. Statistic (Bar Graph)", font=("Segoe UI", 11))
+
+        stat_frame = tk.Frame(self)
         stat_label = tk.Label(stat_frame, text="Statistic")
         stat_options = ttk.OptionMenu(stat_frame, self.selected_option, self.valid_team_options[0],
                                       *self.valid_team_options)
@@ -29,7 +29,9 @@ class BarGraph(tk.Frame):
 
         title_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
         stat_frame.grid(row=2, column=0, padx=5, pady=5, sticky="w")
-        self.graph_button.grid(row=3, column=0, padx=5, pady=5, sticky="w")
+        self.graph_button.grid(row=3, column=0, padx=5, pady=5, sticky="sw")
+
+        self.rowconfigure(3, weight=1)
 
         self.bind('<<team_stats_updated>>', lambda event: self.handle_stats_update(event))
 
