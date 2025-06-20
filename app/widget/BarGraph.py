@@ -11,7 +11,7 @@ class BarGraph(tk.Frame):
         self.controller = controller
         self.root = root
 
-        self.valid_team_options = ["epa_total", "auto_total", "tele_total", "opr", "opr_auto", "opr_tele", "opr_end",
+        self.valid_team_options = ["epa_total", "epa_auto_total", "epa_tele_total", "opr", "opr_auto", "opr_tele", "opr_end",
                                    "event_ranking"]
         self.selected_option = tk.StringVar(value=self.valid_team_options[0])
 

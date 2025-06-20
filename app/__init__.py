@@ -20,7 +20,7 @@ class App(tk.Tk):
 
         # Setup and geometry
         self.geometry("800x600+100+50")
-        self.minsize(800, 600)
+        self.minsize(1000, 600)
         self.configure(background="GhostWhite")
 
         # Setup Controller
@@ -49,7 +49,7 @@ class App(tk.Tk):
         self.statscatter = StatScatterPlot(self, controller=self.controller)
         self.statscatter.grid(row=2, column=1, padx=5, pady=5, sticky="news")
 
-        self.redirect_sysstd() # Redirect console output to the app
+        #self.redirect_sysstd() # Redirect console output to the app
 
         self.columnconfigure(0, weight=1, uniform="group1")
         self.columnconfigure(1, weight=1, uniform="group1")

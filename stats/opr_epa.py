@@ -1,22 +1,25 @@
 import requests
+
+from app import Controller
 from stats.data import get_auth
-from stats.event import create_team_list, get_all_events, get_all_events_by_teams
+from stats.event import create_team_list, get_all_events, get_all_events_by_teams, Event, validate_event
 from stats.export import save_team_data
 from stats.team import Team
 from datetime import datetime
 import numpy as np
 
 
-def create_game_matrix(event_code, team_list):
+def create_game_matrix(event_code, team_list, season):
     """
     Calculates the game matrix, indicating which teams played in which matches
+    :param season: Four digit year representing the season
     :param event_code: Valid FIRST Event Code
     :param team_list: Valid list of teams from the event
     :return: The game matrix
     """
 
     response = requests.get(
-        "http://ftc-api.firstinspires.org/v2.0/2024/matches/" + event_code + "?tournamentLevel=qual", auth=get_auth())
+        f"http://ftc-api.firstinspires.org/v2.0/{season}/matches/" + event_code + "?tournamentLevel=qual", auth=get_auth())
     matches = response.json()['matches']  # only grab from qualifiers to equally compare all teams
 
     game_matrix = []
@@ -40,16 +43,17 @@ def create_game_matrix(event_code, team_list):
     return game_matrix
 
 
-def obtain_score_data(event_code):
+def obtain_score_data(event_code, season):
     """
     Calculates a list of the scores, broken into components
 
+    :param season: Valid four digits representing the year of the game
     :param event_code: A valid FIRST event code
     :return: A tuple of each score component: total score, auto score, teleop score and endgame score
     """
 
     # Pulling a request for the scores with different parameters
-    response = requests.get("https://ftc-api.firstinspires.org/v2.0/2024/scores/" + event_code + "/qual",
+    response = requests.get(f"https://ftc-api.firstinspires.org/v2.0/{season}/scores/" + event_code + "/qual",
                             auth=get_auth())  # only grab from qualifiers to equally compare all teams
     score_data = response.json()['matchScores']
 
@@ -83,9 +87,10 @@ def obtain_score_data(event_code):
     return total_score, auto_score, teleop_score, endgame_score
 
 
-def calculate_start_avg(events):
+def calculate_start_avg(events, season):
     """
     Calculates the start of the season average for use in EPA calculations
+    :param season: Valid four digits representing the year of the game
     :param events: List of (event date, event code) objects to consider
     :return: Average total score, average auto score, average teleop score
     """
@@ -104,7 +109,7 @@ def calculate_start_avg(events):
     # Find the averages in the first number of events
     for event in first_events:
         print(f"Parsing event scores from early event")
-        event_total_scores, event_auto_scores, event_tele_scores, event_end_scorse = obtain_score_data(event)
+        event_total_scores, event_auto_scores, event_tele_scores, event_end_scorse = obtain_score_data(event, season)
         num_games += len(event_total_scores)
         avg_total += sum(event_total_scores)
         avg_auto += sum(event_auto_scores)
@@ -122,16 +127,30 @@ def calculate_start_avg(events):
     print(f"Average Total: {avg_total}, Average Auto: {avg_auto}, Average TeleOP: {avg_teleop}")
     return avg_total, avg_auto, avg_teleop
 
-def calculate_event_epa_opr(teams, region_code=""):
+def calculate_event_epa_opr(teams, season, controller, region_code=""):
     """
     Calculate and update epa and opr for all teams at a specified event
+    :param season: Four digit year representing the season
     :param teams: List of teams participating at the event
+    :param controller: App controller to handle different settings
     :param region_code: Optional, region code used to determine starting averages for EPA
     :return: A list of all teams who have participated in an event with updated statistics
     """
 
-    events = get_all_events_by_teams(teams) # Get all events that the teams have participated in
-    all_teams = calculate_all_epa_opr(events, region_code) # Calculate relevant epa/opr for all teams in those events
+    events = get_all_events_by_teams(teams, season) # Get all events that the teams have participated in
+
+    # Create this dictionary of data in order to be able to export events as JSON
+    event_data = {}
+    for event in events:
+        event_code = event[1]
+        event_obj = validate_event(event_code, season)
+        if event_obj is not None:
+            event_data[event_code] = event_obj
+    controller.shared_data["all_considered_events"] = event_data
+
+    all_teams = calculate_all_epa_opr(events, season, controller, region_code) # Calculate relevant epa/opr for all teams in those events
+
+
 
     print("Filtering for teams in the event")
     event_teams = {str(team): all_teams[team] for team in teams} # Filter for teams at the specified event
@@ -139,43 +158,77 @@ def calculate_event_epa_opr(teams, region_code=""):
     print("Calculations complete!")
     return event_teams
 
+def calculate_world_epa_opr(season, controller: Controller, region_code=""):
+    all_teams: dict[str, Team]
+    all_events = get_all_events()
 
-def calculate_all_epa_opr(events, region_code=""):
+    # Create this dictionary of data in order to be able to export events as JSON
+    event_data = {}
+    for event in all_events:
+        event_code = event[1]
+        event_obj = validate_event(event_code, season)
+
+        print(f"Processing {event_code}")
+        if event_obj is not None:
+            event_data[event_code] = event_obj
+    controller.shared_data["all_considered_events"] = event_data
+
+    all_teams = calculate_all_epa_opr(all_events, season, controller, region_code)
+
+    print("Calculations complete!")
+    return all_teams
+
+def calculate_all_epa_opr(events, season, controller: Controller, region_code=""):
     """
     Calculate and update epa and opr for all teams, able to be filtered by specifying a list of events
+    :param season: Four digit representing the year of the game
     :param events: List of (event start date, event code) objects
+    :param controller: App controller in order to handle settings (like calculating avg)
     :param region_code: (OPTIONAL) Region Code to use while determining starting average
     :return: A list of all teams who have participated in atleast one of the given events with updated statistics
     """
 
     all_teams: dict[str, Team] = {}
 
-    print("Calculating Starting Average from World Teams")
+    # Calculate Averages
     early_events = get_all_events() if region_code == "" else get_all_events(region_code)
 
     if region_code: print("Calculating Starting Averages from Region:", region_code)
+    else: print("Calculating Starting Average from World Teams")
 
-    avg_total, avg_auto, avg_teleop = calculate_start_avg(early_events)
+    if controller.shared_data["setting_calc_avg"]:
+        avg_total, avg_auto, avg_teleop = calculate_start_avg(early_events, season)
+    else:
+        avg_total = controller.shared_data["epa_avg"]
+        avg_auto = controller.shared_data["epa_auto_avg"]
+        avg_teleop = controller.shared_data["epa_tele_avg"]
+        print("Using given predetermined averages.")
+        print(f"Average Total: {avg_total}, Average Auto: {avg_auto}, Average TeleOP: {avg_teleop}")
+
+
     event_codes = [event[1] for event in events] # get event codes from tuple
 
     for event in event_codes:
-        team_list = create_team_list(event) # List of team numbers needed
+        team_list = create_team_list(event, season) # List of team numbers needed
         team_number_list =  []
         print(f"Processing {len(team_list.values())} teams from event: {event}")
         for team_number in team_list:
             team = team_list[team_number]
             team_number_list.append(team.team_number)
+            team.update_epa(avg_total)
+            team.update_auto_epa(avg_auto)
+            team.update_tele_epa(avg_teleop)
 
             if team_number not in all_teams.keys():
                 all_teams[team.team_number] = team
 
             if event in team.rankings:
                 all_teams[team.team_number].update_event_rank(event, team.rankings[event])
-        game_matrix = create_game_matrix(event, team_number_list)
+        game_matrix = create_game_matrix(event, team_number_list, season)
 
         if len(game_matrix) > 0:  # skip events with no games
             # Get relevant scoring data from the event
-            total_match_score, auto_match_score, tele_match_score, end_match_score = obtain_score_data(event)
+            total_match_score, auto_match_score, tele_match_score, end_match_score = obtain_score_data(event, season)
 
             # Calculate OPR
             total_opr = np.linalg.lstsq(game_matrix, total_match_score)[0]
@@ -270,16 +323,16 @@ def update_epa_auto(team_red_1: Team, team_red_2: Team, team_blue_1: Team, team_
 
     m, k = get_epa_parameters(team_red_1, team_red_2, team_blue_1, team_blue_2)
 
-    red_epa = team_red_1.auto_total + team_red_2.auto_total
-    blue_epa = team_blue_1.auto_total + team_blue_2.auto_total
+    red_epa = team_red_1.epa_auto_total + team_red_2.epa_auto_total
+    blue_epa = team_blue_1.epa_auto_total + team_blue_2.epa_auto_total
 
     delta_epa_red = k / (1 + m) * ((red_score - red_epa) - m * (blue_score - blue_epa))
     delta_epa_blue = k / (1 + m) * ((blue_score - blue_epa) - m * (red_score - red_epa))
 
-    team_red_1.update_auto_epa(team_red_1.auto_total + delta_epa_red)
-    team_red_2.update_auto_epa(team_red_2.auto_total + delta_epa_red)
-    team_blue_1.update_auto_epa(team_blue_1.auto_total + delta_epa_blue)
-    team_blue_2.update_auto_epa(team_blue_2.auto_total + delta_epa_blue)
+    team_red_1.update_auto_epa(team_red_1.epa_auto_total + delta_epa_red)
+    team_red_2.update_auto_epa(team_red_2.epa_auto_total + delta_epa_red)
+    team_blue_1.update_auto_epa(team_blue_1.epa_auto_total + delta_epa_blue)
+    team_blue_2.update_auto_epa(team_blue_2.epa_auto_total + delta_epa_blue)
 
 
 def update_epa_tele(team_red_1: Team, team_red_2: Team, team_blue_1: Team, team_blue_2: Team, red_score: int,
@@ -296,13 +349,13 @@ def update_epa_tele(team_red_1: Team, team_red_2: Team, team_blue_1: Team, team_
 
     m, k = get_epa_parameters(team_red_1, team_red_2, team_blue_1, team_blue_2  )
 
-    red_epa = team_red_1.tele_total + team_red_2.tele_total
-    blue_epa = team_blue_1.tele_total + team_blue_2.tele_total
+    red_epa = team_red_1.epa_tele_total + team_red_2.epa_tele_total
+    blue_epa = team_blue_1.epa_tele_total + team_blue_2.epa_tele_total
 
     delta_epa_red = k / (1 + m) * ((red_score - red_epa) - m * (blue_score - blue_epa))
     delta_epa_blue = k / (1 + m) * ((blue_score - blue_epa) - m * (red_score - red_epa))
 
-    team_red_1.update_tele_epa(team_red_1.tele_total + delta_epa_red)
-    team_red_2.update_tele_epa(team_red_2.tele_total + delta_epa_red)
-    team_blue_1.update_tele_epa(team_blue_1.tele_total + delta_epa_blue)
-    team_blue_2.update_tele_epa(team_blue_2.tele_total + delta_epa_blue)
+    team_red_1.update_tele_epa(team_red_1.epa_tele_total + delta_epa_red)
+    team_red_2.update_tele_epa(team_red_2.epa_tele_total + delta_epa_red)
+    team_blue_1.update_tele_epa(team_blue_1.epa_tele_total + delta_epa_blue)
+    team_blue_2.update_tele_epa(team_blue_2.epa_tele_total + delta_epa_blue)

@@ -14,8 +14,8 @@ class Team:
         self.home_region = home_region
 
         self.epa_total = 0
-        self.auto_total = 0
-        self.tele_total = 0
+        self.epa_auto_total = 0
+        self.epa_tele_total = 0
         self.historical_epa = []
         self.historical_auto_epa = []
         self.historical_tele_epa = []
@@ -37,11 +37,11 @@ class Team:
         self.games_played+=1
 
     def update_auto_epa(self, new_epa_auto):
-      self.auto_total = new_epa_auto
+      self.epa_auto_total = new_epa_auto
       self.historical_auto_epa.append(new_epa_auto)
 
     def update_tele_epa(self, new_epa_tele):
-      self.tele_total = new_epa_tele
+      self.epa_tele_total = new_epa_tele
       self.historical_tele_epa.append(new_epa_tele)
 
     def update_opr(self, opr_total, opr_auto, opr_tele, opr_end):

@@ -7,19 +7,19 @@ from stats.data import get_auth
 from stats.team import Team
 
 
-def create_team_list(event_code):
+def create_team_list(event_code, season):
   """
   Retrieves the team list from a given event code
-
+  :param season: Four digit year representing the season
   :param event_code: FIRST Event Code
   :return:
     Dictionary of team objects
   """
 
-  team_response = requests.get("https://ftc-api.firstinspires.org/v2.0/2024/teams?eventCode="+event_code, auth=get_auth())
+  team_response = requests.get(f"https://ftc-api.firstinspires.org/v2.0/{season}/teams?eventCode="+event_code, auth=get_auth())
   teams_at_comp = team_response.json()['teams']
 
-  ranking_response = requests.get("https://ftc-api.firstinspires.org/v2.0/2024/rankings/"+event_code, auth=get_auth())
+  ranking_response = requests.get(f"https://ftc-api.firstinspires.org/v2.0/{season}/rankings/"+event_code, auth=get_auth())
   rankings = ranking_response.json()['rankings']
 
   # Print out the team numbers for each of the teams at the competition
@@ -43,27 +43,29 @@ def create_team_list(event_code):
 
   return teams
 
-def validate_event(event_code) -> Event | None:
+def validate_event(event_code, season) -> Event | None:
   """
   Validate whether a given event code exists in the current season and return an event object
+  :param season: Four digit year representing the season
   :param event_code: An event code to test
   :return: An event object if the code is valid, none otherwise
   """
   if event_code == "": # Return false if empty
     return None
 
-  event_response = requests.get("http://ftc-api.firstinspires.org/v2.0/2024/events?eventCode="+event_code,
+  event_response = requests.get(f"http://ftc-api.firstinspires.org/v2.0/{season}/events?eventCode="+event_code,
                                 auth=get_auth())
 
   if event_response.status_code == 404: # Return false if 404 not found
     return None
 
   event = event_response.json()['events'][0]
-  return Event(event_code, event)
+  return Event(event_code, event, season)
 
-def get_all_events_by_teams(teams: List[str]):
+def get_all_events_by_teams(teams: List[str], season):
   """
     Get all events played in from a list of teams
+    :param season: Four digit year representing the season
     :param teams: A list of team numbers as strings
     :return: A list of objects containing the start date and event code of all events sorted from earliest to latest
     """
@@ -74,7 +76,7 @@ def get_all_events_by_teams(teams: List[str]):
 
   print(f"Retrieving events from {len(teams)} teams")
   for team_number in teams:
-    event_response = requests.get("http://ftc-api.firstinspires.org/v2.0/2024/events?teamNumber="+str(team_number),
+    event_response = requests.get(f"http://ftc-api.firstinspires.org/v2.0/{season}/events?teamNumber="+str(team_number),
                                   auth=get_auth())
     events = event_response.json().get('events', [])
     print(f"Finding events from {team_number} ")
@@ -133,7 +135,13 @@ def get_all_events(region_code:str=""):
   return combined
 
 class Event:
-  def __init__(self, event_code, event):
+
+  def __init__(self, event_code, event, season):
+    """
+    :param event_code: FTC Event Code
+    :param event: JSON response from FTC API for that event
+    :param season: Valid season
+    """
     self.event_code = event_code
     self.name = event['name']
 
@@ -142,4 +150,4 @@ class Event:
     self.state_province = event['stateprov']
     self.city = event['city']
 
-    self.team_list = create_team_list(event_code)
+    self.team_list = create_team_list(event_code, season)

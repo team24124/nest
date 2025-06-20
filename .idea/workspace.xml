@@ -4,21 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Added top team inclusion for TeamScatterPlot.py">
-      <change afterPath="$PROJECT_DIR$/app/widget/VerticalScrolledFrame.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/window/TeamStatWindow.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/window/TeamWindow.py" afterDir="false" />
+    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Added team view to event dashboard">
+      <change afterPath="$PROJECT_DIR$/app/settings_icon-512x512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/window/SettingsWindow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/widget/BarGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/BarGraph.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/widget/EventDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/EventDashboard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/widget/MainControl.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/MainControl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/NumberEntry.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/NumberEntry.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/widget/TeamScatterPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/TeamScatterPlot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/widget/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/TeamProfile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphing/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing/search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/window/TeamStatWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/window/TeamStatWindow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stats/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/export.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/export.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/opr_epa.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/opr_epa.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stats/team.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/team.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/test_retrieve_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/test_retrieve_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +260,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749184327940</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added team view to event dashboard">
+      <option name="closed" value="true" />
+      <created>1749443488822</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1749443488822</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -278,6 +288,7 @@
     <MESSAGE value="added requirements.txt and graphs" />
     <MESSAGE value="Added event rankings" />
     <MESSAGE value="Added top team inclusion for TeamScatterPlot.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added top team inclusion for TeamScatterPlot.py" />
+    <MESSAGE value="Added team view to event dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added team view to event dashboard" />
   </component>
 </project>
