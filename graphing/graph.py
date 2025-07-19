@@ -16,7 +16,7 @@ def make_bar_graph(event, teams, stat: StringVar):
     title = f"{stat_value} for teams at {event.name} ({event.event_code})"
 
     df = pd.DataFrame(data, columns=["Team Number", stat.get()])
-    fig = px.bar(data_frame=df, x="Team Number", y=stat.get(), title=title)
+    fig = px.bar(data_frame=df, x="Team Number", y=stat.get(), title=title, template="simple_white")
     fig.show()
 
 def make_team_scatter(event, teams, stat: StringVar):
@@ -24,7 +24,12 @@ def make_team_scatter(event, teams, stat: StringVar):
     stat_value = stat.get()
     for team in teams.values():
         stats = vars(team)
-        figure.add_trace(go.Scatter(y=stats[stat_value], mode='markers+lines', name=team.team_number))
+        figure.add_trace(go.Scatter(
+            y=stats[stat_value],
+            mode='markers+lines',
+            name=team.team_number,
+            line = dict(shape='spline')
+        ))
 
     figure.update_layout(
         title=dict(text=f"{stat_value} of teams at {event.name} ({event.event_code})"),

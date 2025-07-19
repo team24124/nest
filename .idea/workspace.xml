@@ -4,23 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Added team view to event dashboard">
-      <change afterPath="$PROJECT_DIR$/app/settings_icon-512x512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/window/SettingsWindow.py" afterDir="false" />
+    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Added settings menu and calculate all button">
+      <change afterPath="$PROJECT_DIR$/stats/averages/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/calculations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/calculations/epa.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/calculations/opr.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/config.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/data/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/data/api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/data/parsers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/data/scores.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/events/Event.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/events/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/run.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/teams/Team.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/teams/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/widget/BarGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/BarGraph.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/widget/EventDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/EventDashboard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/widget/MainControl.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/MainControl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/widget/NumberEntry.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/NumberEntry.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/TeamProfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/TeamProfile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/TeamScatterPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/TeamScatterPlot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/window/SettingsWindow.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/window/TeamStatWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/window/TeamStatWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphing/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing/graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphing/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing/search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/event.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/stats/export.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/export.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/opr_epa.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/opr_epa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/team.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/team.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/test_retrieve_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/test_retrieve_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/opr_epa.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/team.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/test_retrieve_data.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,12 +82,19 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;Python tests.Python tests for test_retrieve_data.TestRetrieveData.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests in test_retrieve_data.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.__init__ (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.__init__ (2).executor&quot;: &quot;Run&quot;,
+    &quot;Python.__init__ (3).executor&quot;: &quot;Run&quot;,
+    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
+    &quot;Python.api.executor&quot;: &quot;Run&quot;,
     &quot;Python.epa.executor&quot;: &quot;Run&quot;,
     &quot;Python.event.executor&quot;: &quot;Run&quot;,
+    &quot;Python.export.executor&quot;: &quot;Run&quot;,
     &quot;Python.graph.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.opr.executor&quot;: &quot;Run&quot;,
     &quot;Python.opr_epa (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.run.executor&quot;: &quot;Run&quot;,
     &quot;Python.search.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -79,56 +104,13 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\J\Documents\Code\Python\stats-app\" />
       <recent name="C:\Users\J\Documents\Code\Python\stats-app\app\widget" />
       <recent name="C:\Users\J\Documents\Code\Python\stats-app\app" />
       <recent name="C:\Users\J\Documents\Code\Python\stats-app" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="event" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="stats-app" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/stats" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stats/event.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="graph" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="stats-app" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/graphing" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graphing/graph.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="stats-app" />
       <option name="ENV_FILES" value="" />
@@ -151,7 +133,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="opr_epa (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="stats-app" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -160,33 +142,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/stats" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/new/stats" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stats/opr_epa.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="search" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="stats-app" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/graphing" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graphing/search.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/new/stats/run.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -198,10 +158,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.search" />
-        <item itemvalue="Python.event" />
-        <item itemvalue="Python.graph" />
-        <item itemvalue="Python.opr_epa (1)" />
+        <item itemvalue="Python.run" />
       </list>
     </recent_temporary>
   </component>
@@ -268,7 +225,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749443488822</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added settings menu and calculate all button">
+      <option name="closed" value="true" />
+      <created>1750433651276</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1750433651276</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -289,6 +254,7 @@
     <MESSAGE value="Added event rankings" />
     <MESSAGE value="Added top team inclusion for TeamScatterPlot.py" />
     <MESSAGE value="Added team view to event dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added team view to event dashboard" />
+    <MESSAGE value="Added settings menu and calculate all button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added settings menu and calculate all button" />
   </component>
 </project>
