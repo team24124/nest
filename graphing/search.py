@@ -1,10 +1,10 @@
 from itertools import islice
 from tkinter import StringVar
 
-from stats.team import Team
+from stats.teams.Team import Team
 
 
-def get_top_n_teams(number_of_teams, teams: dict[str, Team], stat: StringVar):
+def get_top_n_teams(number_of_teams, teams: dict[int, Team], stat: StringVar):
     sorted_teams = sorted(teams, key=lambda x: vars(teams[x])[stat.get()][-1], reverse=True)
 
     top_teams = list(sorted_teams)[:number_of_teams]

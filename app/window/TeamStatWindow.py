@@ -3,7 +3,7 @@ import webbrowser
 
 from app import Controller
 from app.widget.VerticalScrolledFrame import VerticalScrolledFrame
-from stats.team import Team
+from stats.teams.Team import Team
 
 
 class TeamStatWindow(tk.Toplevel):
@@ -34,8 +34,6 @@ class TeamStatWindow(tk.Toplevel):
         # Statistics
         event_code = controller.shared_data["event_code"]
         stats = VerticalScrolledFrame(self)
-        tk.Label(stats.interior, text=f"Ranking at Event: {team.rankings[event_code]}").pack(side="top", anchor="w",
-                                                                                             padx=5, pady=5)
         tk.Label(stats.interior, text=f"EPA: {team.epa_total}").pack(side="top", anchor="w", padx=5, pady=5)
         tk.Label(stats.interior, text=f"Auto EPA: {team.epa_auto_total}").pack(side="top", anchor="w", padx=5, pady=5)
         tk.Label(stats.interior, text=f"Tele EPA: {team.epa_tele_total}").pack(side="top", anchor="w", padx=5, pady=5)

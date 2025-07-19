@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from app import Controller
 from graphing.graph import make_bar_graph
-from stats.event import Event
+from stats.events.Event import Event
 
 
 class BarGraph(tk.Frame):
@@ -11,8 +11,7 @@ class BarGraph(tk.Frame):
         self.controller = controller
         self.root = root
 
-        self.valid_team_options = ["epa_total", "epa_auto_total", "epa_tele_total", "opr", "opr_auto", "opr_tele", "opr_end",
-                                   "event_ranking"]
+        self.valid_team_options = ["epa_total", "epa_auto_total", "epa_tele_total", "opr", "opr_auto", "opr_tele", "opr_end"]
         self.selected_option = tk.StringVar(value=self.valid_team_options[0])
 
         title_label = tk.Label(self, text="Teams vs. Statistic (Bar Graph)", font=("Segoe UI", 11))

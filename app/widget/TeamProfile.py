@@ -2,7 +2,7 @@ import tkinter as tk
 
 from app import Controller
 from app.window.TeamStatWindow import TeamStatWindow
-from stats.team import Team
+from stats.teams.Team import Team
 
 
 class TeamProfile(tk.Frame):

@@ -10,7 +10,7 @@ from app.widget.MainControl import MainControl
 from app.widget.ConsoleOutput import ConsoleOutput, TextRedirector
 from app.widget.StatScatterPlot import StatScatterPlot
 from app.widget.TeamScatterPlot import TeamScatterPlot
-from stats.event import get_all_events_by_teams, Event
+from stats.events.Event import Event
 
 
 class App(tk.Tk):
@@ -49,7 +49,7 @@ class App(tk.Tk):
         self.statscatter = StatScatterPlot(self, controller=self.controller)
         self.statscatter.grid(row=2, column=1, padx=5, pady=5, sticky="news")
 
-        #self.redirect_sysstd() # Redirect console output to the app
+        self.redirect_sysstd() # Redirect console output to the app
 
         self.columnconfigure(0, weight=1, uniform="group1")
         self.columnconfigure(1, weight=1, uniform="group1")

@@ -1,10 +1,9 @@
-from tkinter import ttk
-from threading import Thread
 import tkinter as tk
 from app import Controller
 from app.window.TeamWindow import TeamsWindow
-from stats.event import Event, get_all_events, get_all_events_by_teams
 import webbrowser
+
+from stats.events.Event import Event
 
 
 class EventDashboard(tk.Frame):
@@ -14,7 +13,8 @@ class EventDashboard(tk.Frame):
         self.root = root
 
         title_label = tk.Label(self, text="Event Overview", font=("Segoe UI", 11))
-        self.active_label = tk.Label(self, text=f"Active Event: {controller.shared_data["event_code"]}")
+        active_event_code = controller.shared_data["event_code"]
+        self.active_label = tk.Label(self, text=f"Active Event: {active_event_code}")
 
         self.event_info_frame = tk.Frame(self)
 

@@ -6,8 +6,8 @@ from app import Controller
 from app.widget.NumberEntry import NumberEntry
 from graphing.graph import make_bar_graph, make_team_scatter
 from graphing.search import get_top_n_teams
-from stats.event import Event
-from stats.team import Team
+from stats.events.Event import Event
+from stats.teams.Team import Team
 
 
 class TeamScatterPlot(tk.Frame):
@@ -60,10 +60,12 @@ class TeamScatterPlot(tk.Frame):
 
     def make_graph(self):
         event: Event = self.controller.shared_data["event"]
-        team_data: dict[str, Team] = self.controller.shared_data["teams"]
+        team_data: dict[int, Team] = self.controller.shared_data["teams"]
         n = int(self.num_team_entry.get())
 
-        selected_team_numbers = self.team_entry.get().replace(" ", "").split(",")
+        team_entry_values = self.team_entry.get().replace(" ", "").split(",")
+        print(team_entry_values != [""])
+        selected_team_numbers = [int(team_number) for team_number in team_entry_values if team_entry_values != [""]]
         selected_teams = get_top_n_teams(n, team_data, self.selected_option)
 
         if self.team_entry.get() != "":
