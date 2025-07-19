@@ -16,3 +16,6 @@ API_TOKEN=[password]
 3) From a command line interface in the project directory run `pip install -r requirements.txt` to install
 the required python dependencies.
 4) Run `main.py` to start the app.
+
+## Updating for Future Seasons
+See [stats-calculator](https://github.com/team24124/stats-calculator/blob/main/README.md) for information on updating the stats calculator for new seasons.

@@ -4,41 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Added settings menu and calculate all button">
-      <change afterPath="$PROJECT_DIR$/stats/averages/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/calculations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/calculations/epa.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/calculations/opr.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/config.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/data/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/data/api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/data/parsers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/data/scores.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/events/Event.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/events/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/run.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/teams/Team.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/teams/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/widget/BarGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/BarGraph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/widget/EventDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/EventDashboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/widget/MainControl.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/MainControl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/widget/TeamProfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/TeamProfile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/widget/TeamScatterPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/TeamScatterPlot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/window/SettingsWindow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/window/TeamStatWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/window/TeamStatWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphing/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing/graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphing/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing/search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/event.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/export.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/export.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/opr_epa.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/team.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/test_retrieve_data.py" beforeDir="false" />
+    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Integrated api and new stats calculator to app">
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +200,23 @@
       <option name="project" value="LOCAL" />
       <updated>1750433651276</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added new standard stats package">
+      <option name="closed" value="true" />
+      <created>1752898115854</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1752898115854</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Integrated api and new stats calculator to app">
+      <option name="closed" value="true" />
+      <created>1752898165053</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1752898165053</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -255,6 +238,8 @@
     <MESSAGE value="Added top team inclusion for TeamScatterPlot.py" />
     <MESSAGE value="Added team view to event dashboard" />
     <MESSAGE value="Added settings menu and calculate all button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added settings menu and calculate all button" />
+    <MESSAGE value="Added new standard stats package" />
+    <MESSAGE value="Integrated api and new stats calculator to app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrated api and new stats calculator to app" />
   </component>
 </project>
