@@ -19,6 +19,7 @@ class TeamScatterPlot(tk.Frame):
         self.valid_team_options = ["historical_epa", "historical_auto_epa", "historical_tele_epa", "opr_total_vals",
                                    "opr_auto_vals", "opr_tele_vals", "opr_end_vals"]
         self.selected_option = tk.StringVar(value=self.valid_team_options[0])
+        self.only_event_matches = tk.BooleanVar(value=False)
 
         title_label = tk.Label(self, text="Historical Statistics (Line Graph)", font=("Segoe UI", 11))
 
@@ -34,6 +35,8 @@ class TeamScatterPlot(tk.Frame):
         num_team_label = tk.Label(num_team_frame, text="Include top n teams: ")
         self.num_team_entry = NumberEntry(num_team_frame)
 
+        only_event_checkbox = tk.Checkbutton(self, text="Only view matches from this event ", variable=self.only_event_matches)
+
         self.graph_button = tk.Button(self, text="Graph", state="disabled", width=20, height=2, command=self.make_graph)
 
         stat_label.grid(row=0, column=0, padx=5, pady=5)
@@ -45,11 +48,14 @@ class TeamScatterPlot(tk.Frame):
         num_team_label.grid(row=0, column=0, padx=5, pady=5)
         self.num_team_entry.grid(row=0, column=1, padx=5, pady=5)
 
+
+
         title_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
         stat_frame.grid(row=1, column=0, padx=5, pady=5, sticky="w")
         team_frame.grid(row=2, column=0, padx=5, pady=5, sticky="w")
         num_team_frame.grid(row=3, column=0, padx=5, pady=5, sticky="w")
-        self.graph_button.grid(row=4, column=0, padx=5, pady=5, sticky="sw")
+        only_event_checkbox.grid(row=4, column=0, padx=5, pady=5, sticky="w")
+        self.graph_button.grid(row=5, column=0, padx=5, pady=5, sticky="sw")
 
         self.rowconfigure(4, weight=1)
 
@@ -63,11 +69,14 @@ class TeamScatterPlot(tk.Frame):
         team_data: dict[int, Team] = self.controller.shared_data["teams"]
         n = int(self.num_team_entry.get())
 
+        # Parse all team numbers from the entry box
         team_entry_values = self.team_entry.get().replace(" ", "").split(",")
-        print(team_entry_values != [""])
         selected_team_numbers = [int(team_number) for team_number in team_entry_values if team_entry_values != [""]]
+
+        # Get top teams based on the selected statistic
         selected_teams = get_top_n_teams(n, team_data, self.selected_option)
 
+        # Check that all teams entered exist
         if self.team_entry.get() != "":
             for team_number in selected_team_numbers:
                 if team_number in team_data.keys():
@@ -78,4 +87,4 @@ class TeamScatterPlot(tk.Frame):
                     tkinter.messagebox.showerror(title="Team not found.", message=err_msg)
                     return
 
-        make_team_scatter(event, selected_teams, self.selected_option)
+        make_team_scatter(event, selected_teams, self.only_event_matches, self.selected_option)

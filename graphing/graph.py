@@ -1,8 +1,11 @@
-from tkinter import StringVar
+from tkinter import StringVar, BooleanVar
 
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
+
+from stats.teams import Team
+
 
 def make_bar_graph(event, teams, stat: StringVar):
     data = []
@@ -19,16 +22,30 @@ def make_bar_graph(event, teams, stat: StringVar):
     fig = px.bar(data_frame=df, x="Team Number", y=stat.get(), title=title, template="simple_white")
     fig.show()
 
-def make_team_scatter(event, teams, stat: StringVar):
+
+def make_team_scatter(event, teams: dict[int, Team], only_event_matches: BooleanVar, stat: StringVar):
     figure = go.Figure()
     stat_value = stat.get()
+
+    # Add a line for each selected team
     for team in teams.values():
+        first_index = -1
+        last_index = -1
+
+        # If only showing matches from this event look for the first and last index of those matches
+        if only_event_matches.get():
+            for index, match in enumerate(team.matches):
+                is_event_match = event.event_code in match
+                if is_event_match:
+                    if first_index == -1: first_index = index
+                    if index > last_index: last_index = index
+
         stats = vars(team)
         figure.add_trace(go.Scatter(
-            y=stats[stat_value],
+            y=stats[stat_value][first_index:last_index+1] if only_event_matches.get() else stats[stat_value],
             mode='markers+lines',
             name=team.team_number,
-            line = dict(shape='spline')
+            line=dict(shape='spline')
         ))
 
     figure.update_layout(
@@ -46,7 +63,7 @@ def make_team_scatter(event, teams, stat: StringVar):
     figure.show()
 
 
-def make_stat_scatter(event, teams, stat_x: StringVar, stat_y: StringVar):
+def make_stat_scatter(event, teams, event_rankings, stat_x: StringVar, stat_y: StringVar):
     data_x = []
     data_y = []
     team_numbers = []
@@ -59,12 +76,20 @@ def make_stat_scatter(event, teams, stat_x: StringVar, stat_y: StringVar):
     for team in teams.values():
         stats = vars(team)
         if stat_x_value == 'event_ranking':
-            data_x.append(stats['rankings'][event.event_code])
+            if event_rankings:
+                data_x.append(event_rankings[team.team_number])
+            else:
+                raise ValueError(
+                    "You tried to view rankings on an event with divisions. Use individual division events to do this instead.")
         else:
             data_x.append(stats[stat_x_value])
 
         if stat_y_value == 'event_ranking':
-            data_y.append(stats['rankings'][event.event_code])
+            if event_rankings:
+                data_y.append(event_rankings[team.team_number])
+            else:
+                raise ValueError(
+                    "You tried to view rankings on an event with divisions. Use individual division events to do this instead.")
         else:
             data_y.append(stats[stat_y_value])
         team_numbers.append(team.team_number)

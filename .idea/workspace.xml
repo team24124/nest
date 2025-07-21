@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Integrated api and new stats calculator to app">
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Updated readme">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/StatScatterPlot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/TeamScatterPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/TeamScatterPlot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphing/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing/graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/events/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/events/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/run.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +66,7 @@
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.opr.executor&quot;: &quot;Run&quot;,
     &quot;Python.opr_epa (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.run (1).executor&quot;: &quot;Run&quot;,
     &quot;Python.run.executor&quot;: &quot;Run&quot;,
     &quot;Python.search.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -100,6 +106,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="run (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="stats-app" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/stats" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stats/run.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="stats-app" />
       <option name="ENV_FILES" value="" />
@@ -125,6 +153,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.run (1)" />
         <item itemvalue="Python.run" />
       </list>
     </recent_temporary>
@@ -216,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752898165053</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Updated readme">
+      <option name="closed" value="true" />
+      <created>1752898282370</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1752898282370</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -240,6 +277,7 @@
     <MESSAGE value="Added settings menu and calculate all button" />
     <MESSAGE value="Added new standard stats package" />
     <MESSAGE value="Integrated api and new stats calculator to app" />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrated api and new stats calculator to app" />
+    <MESSAGE value="Updated readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated readme" />
   </component>
 </project>
