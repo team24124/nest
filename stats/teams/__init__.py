@@ -12,8 +12,14 @@ def get_team_from_json(team_data: dict) -> Team:
     :return: Team object
     """
     # Extract data from json response
+    # removes the data if the team_number is not available
+    if not isinstance(team_data, dict) or 'team_number' not in team_data:
+        print("ERROR: Invalid team_data from API:", team_data)
+        return None  # or raise a cleaner error
 
     team_number = team_data['team_number']
+
+    #team_number = team_data['team_number']
     team_name = team_data['team_name']
     country = team_data['country']
     state_province = team_data['state_province']
@@ -85,13 +91,13 @@ def get_teams_at_event(event_code: str) -> list[int]:
 
     return team_number_list
 
-
+"""
 def get_team_data_from_event(event_code: str) -> dict[int, Team]:
     """
-    Get team data for all teams at a given evvent
-    :param event_code: Valid FTC event code
-    :return: Dictionary of all team data at event (key=team number, value=team data object)
-    """
+#    Get team data for all teams at a given evvent
+#    :param event_code: Valid FTC event code
+#    :return: Dictionary of all team data at event (key=team number, value=team data object)
+"""
     # Create a list of all team numbers
     team_number_list = get_teams_at_event(event_code)
 
@@ -101,11 +107,11 @@ def get_team_data_from_event(event_code: str) -> dict[int, Team]:
 
 
 def get_team_data_from_events(event_codes: list[str]) -> dict[int, Team]:
-    """
-    Get team data for all teams from a given list of events
-    :param event_codes: List of Valid FTC event code
-    :return: Dictionary of all team data at event (key=team number, value=team data object)
-    """
+"""
+#    Get team data for all teams from a given list of events
+#    :param event_codes: List of Valid FTC event code
+#    :return: Dictionary of all team data at event (key=team number, value=team data object)
+"""
     # Create a list of all team numbers
     team_number_list = []
 
@@ -114,4 +120,41 @@ def get_team_data_from_events(event_codes: list[str]) -> dict[int, Team]:
 
     # Use dictionary comprehension to create team data
     team_data = {team_number: get_team_from_nighthawks(team_number) for team_number in team_number_list}
+    return team_data
+"""
+
+def get_team_data_from_event(event_code: str) -> dict[int, Team]:
+    """
+    Get team data for all teams at a given event
+    :param event_code: Valid FTC event code
+    :return: Dictionary of all team data at event (key=team number, value=team data object)
+    """
+    team_number_list = get_teams_at_event(event_code)
+    team_data = {}
+
+    for team_number in team_number_list:
+        try:
+            team_data[team_number] = get_team_from_nighthawks(team_number)
+        except ValueError:
+            print(f"Warning: Team {team_number} not found, skipping.")
+
+    return team_data
+
+
+def get_team_data_from_events(event_codes: list[str]) -> dict[int, Team]:
+    """
+    Get team data for all teams from a given list of events
+    :param event_codes: List of Valid FTC event code
+    :return: Dictionary of all team data at events (key=team number, value=team data object)
+    """
+    team_number_list = []
+    for event_code in event_codes:
+        team_number_list += get_teams_at_event(event_code)
+
+    team_data = {}
+    for team_number in team_number_list:
+        try:
+            team_data[team_number] = get_team_from_nighthawks(team_number)
+        except ValueError:
+            print(f"Warning: Team {team_number} not found, skipping.")
     return team_data

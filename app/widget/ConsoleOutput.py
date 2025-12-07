@@ -1,6 +1,9 @@
 from tkinter import ttk
 import tkinter as tk
 from app import Controller
+from tkinter import ttk
+import tkinter as tk
+from app import Controller
 
 
 class ConsoleOutput(tk.Frame):

@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Change epa parameters to give more stable results">
+      <change beforePath="$PROJECT_DIR$/.idea/stats-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/stats-app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/widget/ConsoleOutput.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/ConsoleOutput.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/stats/config.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/data/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/data/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/data/parsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/data/parsers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/data/scores.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/data/scores.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/events/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/events/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/teams/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/teams/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +40,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/team24124/nest.git&quot;,
-    &quot;accountId&quot;: &quot;72728449-4c19-45cf-afe3-896836c27568&quot;
+    &quot;accountId&quot;: &quot;43c95e7f-371d-4080-a992-532d9aa091f3&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -61,12 +69,14 @@
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.opr.executor&quot;: &quot;Run&quot;,
     &quot;Python.opr_epa (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.parsers.executor&quot;: &quot;Run&quot;,
     &quot;Python.run (1).executor&quot;: &quot;Run&quot;,
     &quot;Python.run.executor&quot;: &quot;Run&quot;,
     &quot;Python.search.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
@@ -156,10 +166,11 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-dfff61a61320-9cdd278e9d02-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-251.25410.159" />
+        <option value="bundled-python-sdk-fb887030ada0-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.21565.199" />
       </set>
     </attachedChunks>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="" />
