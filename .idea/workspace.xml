@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Change epa parameters to give more stable results">
-      <change beforePath="$PROJECT_DIR$/.idea/stats-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/stats-app.iml" afterDir="false" />
+    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Adapted scoring for new season, and fixed minor bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/widget/ConsoleOutput.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/widget/ConsoleOutput.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/stats/config.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/data/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/data/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/calculations/opr.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/calculations/opr.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stats/data/parsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/data/parsers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/data/scores.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/data/scores.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/events/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/events/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/teams/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/teams/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753137290553</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Adapted scoring for new season, and fixed minor bugs">
+      <option name="closed" value="true" />
+      <created>1765086240392</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1765086240392</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -302,6 +304,7 @@
     <MESSAGE value="Updated readme" />
     <MESSAGE value="Added view event matches only option to team scatterplot" />
     <MESSAGE value="Change epa parameters to give more stable results" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change epa parameters to give more stable results" />
+    <MESSAGE value="Adapted scoring for new season, and fixed minor bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adapted scoring for new season, and fixed minor bugs" />
   </component>
 </project>

@@ -32,6 +32,12 @@ def update_opr(team_list: list[int], game_matrix: list[list[int]], event_data: E
     total_opr, auto_opr, tele_opr, end_opr = calculate_opr(game_matrix, event_data)
 
     for i in range(len(team_list)):
+
         team_number = team_list[i]  # Use team number from team list to get team
         team_obj = team_data[team_number]
+        #team_obj = team_data.get(team_number)
+        if team_obj is None:
+            print(f"WARNING: No team object for team {team_number}. Skipping OPR update.")
+            continue
+
         team_obj.update_opr(total_opr[i], auto_opr[i], tele_opr[i], end_opr[i])
