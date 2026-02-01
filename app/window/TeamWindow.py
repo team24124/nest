@@ -5,6 +5,7 @@ from app import Controller
 from app.widget.TeamProfile import TeamProfile
 from app.widget.VerticalScrolledFrame import VerticalScrolledFrame
 from app.window.TeamStatWindow import TeamStatWindow
+from app.widget.LiveEpaConsole import LiveEpaConsole
 
 class TeamsWindow(tk.Toplevel):
     def __init__(self, root, controller: Controller):

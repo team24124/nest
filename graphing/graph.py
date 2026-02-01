@@ -116,3 +116,31 @@ def make_stat_scatter(event, teams, event_rankings, stat_x: StringVar, stat_y: S
     )
 
     figure.show()
+
+
+def make_live_epa_trend(event, teams: dict[int, Team], target_team_numbers: list):
+    """
+    Creates an interactive Plotly line graph showing the EPA trend
+    for specific teams during the live event.
+    """
+    figure = go.Figure()
+
+    # Inside graphing/graph.py
+    for t_num in target_team_numbers:
+        team = teams.get(int(t_num))
+        if team and team.historical_epa:  # Use the correct name from Team.py!
+            figure.add_trace(go.Scatter(
+                y=team.historical_epa,
+                mode='lines+markers',
+                name=f"Team {t_num}"
+            ))
+
+    figure.update_layout(
+        title=dict(text=f"Live EPA Progression: {event.name} ({event.event_code})"),
+        xaxis=dict(title=dict(text="Matches Played")),
+        yaxis=dict(title=dict(text="EPA Value")),
+        template="simple_white",
+        hovermode="x unified"
+    )
+
+    figure.show()

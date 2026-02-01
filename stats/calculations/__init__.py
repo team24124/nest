@@ -8,7 +8,7 @@ from stats.calculations.opr import update_opr
 from stats.data import get_config, get_auth, get_season_score_parser
 from stats.data.api import get_team_from_ftc
 from stats.data.scores import EventData
-from stats.events import get_all_events
+from stats.events import get_all_events, get_event_by_code, event_has_teams
 from stats.events.Event import Event
 from stats.teams import get_team_data_from_events
 from stats.teams.Team import Team
@@ -31,25 +31,84 @@ def calculate_epa_opr(events: list[Event]):
     return team_data
 
 
-def update_teams_to_date(last_updated: datetime):
+def update_teams_to_date(last_updated, pending_event_codes: list[str]):
+
+    # fetch only new events
+    new_events = get_all_events(
+        min_date=last_updated.date(),
+        max_date=datetime.today().date()
+    )
+
+    # prepend pending events
+    pending_events = [get_event_by_code(code) for code in pending_event_codes]
+    all_events = pending_events + new_events
+
+    valid_events = []
+    still_pending = []
+
+    for event in all_events:
+        if not event:
+            continue
+
+        if event_has_teams(event.event_code):
+            valid_events.append(event)
+        else:
+            still_pending.append(event.event_code)
+
+    # 🔥 team calculation happens here
+    teams = calculate_teams_from_events(valid_events)
+
+    return valid_events, teams, still_pending
+
+
+
+
+def create_game_matrix(event_code: str, team_list: list[int]):
     """
-    Updates existing team data to the latest day given a last updated date
-    :param last_updated: Python datetime representing the last time a set of team data was updated
-    :return: A tuple containing a list of new events and updated team data as a dictionary of team numbers and team data
+    Calculates the game matrix, indicating which teams played in which matches
+    :param event_code: Valid FIRST Event Code
+    :param team_list: Valid list of teams from the event
+    :return: The game matrix
     """
-    new_events = get_all_events(min_date=last_updated.date(), max_date=datetime.today().date())
-    event_codes = [event.event_code for event in new_events]
+    season = get_config()['season']
+
+    response = requests.get(
+        f"http://ftc-api.firstinspires.org/v2.0/{season}/matches/" + event_code + "?tournamentLevel=qual", auth=get_auth())
+    matches = response.json()['matches']  # only grab from qualifiers to equally compare all teams
+
+    game_matrix = []
+
+    # Add 1 to row at index where team number is in list
+    for match in matches:
+        red_alliances = [0] * len(team_list)
+        blue_allainces = [0] * len(team_list)
+
+        # for each match find if each team is on a red or blue alliance team
+        for team in match['teams']:
+            alliance = team['station']
+            if alliance == 'Red1' or alliance == 'Red2':
+                red_alliances[team_list.index(team['teamNumber'])] = 1
+            else:
+                blue_allainces[team_list.index(team['teamNumber'])] = 1
+
+        game_matrix.append(red_alliances)
+        game_matrix.append(blue_allainces)
+
+    return game_matrix
+
+def calculate_teams_from_events(events: list):
+    if not events:
+        return {}
+
+    event_codes = [e.event_code for e in events]
 
     avg_total, avg_auto, avg_tele = get_start_avg()
     team_data = get_team_data_from_events(event_codes)
 
-    for event in new_events:
-        print(event.event_code)
+    for event in events:
         update_teams_at_event(event, team_data, avg_total, avg_auto, avg_tele)
 
-    return new_events, team_data
-
-
+    return team_data
 
 def update_teams_at_event(event: Event, team_data: dict[int, Team], avg_total: float, avg_auto: float, avg_tele: float):
     """
@@ -87,37 +146,3 @@ def update_teams_at_event(event: Event, team_data: dict[int, Team], avg_total: f
     update_epa(team_number_list, game_matrix, event_data, team_data)
 
     return None
-
-
-def create_game_matrix(event_code: str, team_list: list[int]):
-    """
-    Calculates the game matrix, indicating which teams played in which matches
-    :param event_code: Valid FIRST Event Code
-    :param team_list: Valid list of teams from the event
-    :return: The game matrix
-    """
-    season = get_config()['season']
-
-    response = requests.get(
-        f"http://ftc-api.firstinspires.org/v2.0/{season}/matches/" + event_code + "?tournamentLevel=qual", auth=get_auth())
-    matches = response.json()['matches']  # only grab from qualifiers to equally compare all teams
-
-    game_matrix = []
-
-    # Add 1 to row at index where team number is in list
-    for match in matches:
-        red_alliances = [0] * len(team_list)
-        blue_allainces = [0] * len(team_list)
-
-        # for each match find if each team is on a red or blue alliance team
-        for team in match['teams']:
-            alliance = team['station']
-            if alliance == 'Red1' or alliance == 'Red2':
-                red_alliances[team_list.index(team['teamNumber'])] = 1
-            else:
-                blue_allainces[team_list.index(team['teamNumber'])] = 1
-
-        game_matrix.append(red_alliances)
-        game_matrix.append(blue_allainces)
-
-    return game_matrix

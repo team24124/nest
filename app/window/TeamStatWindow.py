@@ -6,6 +6,7 @@ from app.widget.VerticalScrolledFrame import VerticalScrolledFrame
 from stats.teams.Team import Team
 
 
+
 class TeamStatWindow(tk.Toplevel):
     def __init__(self, root, controller: Controller, team: Team):
         super().__init__(root)

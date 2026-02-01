@@ -4,6 +4,7 @@ import requests
 
 from stats.data import get_config, get_auth
 from stats.events.Event import Event
+from stats.teams import get_teams_at_event
 
 
 def create_team_list(event_code: str) -> list[int]:
@@ -117,4 +118,46 @@ def get_event_rankings(event_code: str) -> dict[int, int]:
   rankings = {rank['teamNumber']: rank['rank'] for rank in rank_data}
 
   return rankings
+
+def event_has_teams(event_code: str) -> bool:
+  try:
+    teams = get_teams_at_event(event_code)
+    return len(teams) > 0
+  except Exception as e:
+    print(f"Error checking teams for event {event_code}: {e}")
+    return False
+
+
+def get_event_by_code(event_code: str):
+  """
+  Fetch a single event from the FTC API by event code
+  and return it as an Event object, or None if invalid.
+  """
+  from stats.events.Event import Event
+
+  config = get_config()
+  season = config['season']
+  valid_events = config['allowed_events']
+
+  # FTC API endpoint for a single event
+  response = requests.get(
+    f"http://ftc-api.firstinspires.org/v2.0/{season}/events/{event_code}",
+    auth=get_auth()
+  )
+
+  if response.status_code != 200:
+    return None
+
+  event_data = response.json().get("events", [])
+  if not event_data:
+    return None
+
+  event_data = event_data[0]
+
+  # Filter by allowed event types
+  event_type = int(event_data.get("type", -1))
+  if event_type not in valid_events:
+    return None
+
+  return Event(event_data)
 
