@@ -14,7 +14,6 @@ def get_team_from_ftc(team_number: int) -> Team:
         f"https://ftc-api.firstinspires.org/v2.0/{season}/teams?teamNumber={team_number}",
         auth=get_auth()
     )
-
     if team_response.status_code == 400:
         raise ValueError(f"The team number {team_number} you tried to find does not exist.")
 

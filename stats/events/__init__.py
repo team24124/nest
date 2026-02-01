@@ -160,4 +160,3 @@ def get_event_by_code(event_code: str):
     return None
 
   return Event(event_data)
-

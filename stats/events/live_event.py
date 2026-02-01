@@ -56,7 +56,6 @@ def _resolve_match_teams(
 
     red = []
     blue = []
-
     for team in match["teams"]:
         team_number = team["teamNumber"]
         if team_number not in team_data:

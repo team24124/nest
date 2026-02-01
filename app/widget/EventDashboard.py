@@ -2,9 +2,7 @@ import tkinter as tk
 from app import Controller
 from app.window.TeamWindow import TeamsWindow
 import webbrowser
-
 from stats.events.Event import Event
-
 
 class EventDashboard(tk.Frame):
     def __init__(self, root: tk.Tk, controller: Controller):

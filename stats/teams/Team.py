@@ -9,7 +9,6 @@ class Team:
         # List of all matches played in consecutive order
         self.matches = []
         self.games_played = 0
-
         self.country = country
         self.state_prov = state_prov
         self.city = city

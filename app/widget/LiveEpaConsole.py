@@ -39,7 +39,6 @@ class LiveEpaConsole(tk.Frame):
             threading.Thread(target=self.run_logic, args=(event_code, team_data), daemon=True).start()
 
         self.after(180000, self.update_loop)
-
     def run_logic(self, event_code, team_data):
         try:
             season = get_config()['season']

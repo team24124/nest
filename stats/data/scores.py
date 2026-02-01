@@ -5,7 +5,6 @@ class AllianceScoreData:
     """
     Match Score representation for statistics calulcations
     """
-
     def __init__(self, total_score: int, auto_score: int, tele_score: int, end_score: int):
         """
         Construct new alliance scores from data

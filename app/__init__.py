@@ -20,6 +20,7 @@ class App(tk.Tk):
         self.minsize(1000, 600)
         self.configure(background="GhostWhite")
 
+
         # Setup Controller
         self.controller = Controller()
 

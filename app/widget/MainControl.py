@@ -37,7 +37,6 @@ class MainControl(tk.Frame):
         event_label.grid(row=0, column=0, padx=5)
         self.event_entry.grid(row=0, column=1, padx=5)
         self.event_submit.grid(row=0, column=2, padx=5)
-
         # Processing Label
         self.processing_label = tk.Label(self, text="Processing Data...")
 

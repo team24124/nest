@@ -36,7 +36,6 @@ def get_config():
         print(f"Error parsing config TOML file: {e}")
         return None
 
-
 def parse_score_data(season: int, event_code: str):
     """
     Obtain score data broken into components for a given event and season.

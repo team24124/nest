@@ -117,7 +117,6 @@ def make_stat_scatter(event, teams, event_rankings, stat_x: StringVar, stat_y: S
 
     figure.show()
 
-
 def make_live_epa_trend(event, teams: dict[int, Team], target_team_numbers: list):
     """
     Creates an interactive Plotly line graph showing the EPA trend

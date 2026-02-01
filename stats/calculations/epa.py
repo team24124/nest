@@ -1,8 +1,6 @@
 import numpy as np
-
 from stats.data.scores import EventData, MatchData
 from stats.teams.Team import Team
-
 
 def get_epa_parameters(games_played: float):
     """

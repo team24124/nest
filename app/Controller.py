@@ -13,6 +13,7 @@ class Controller:
             "teams": None,
         }
 
+
     def is_event_selected(self):
         return self.shared_data["event_code"] is not None
 

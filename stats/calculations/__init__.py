@@ -1,7 +1,5 @@
 from datetime import datetime
-
 import requests
-
 from stats.averages import get_start_avg
 from stats.calculations.epa import update_epa
 from stats.calculations.opr import update_opr

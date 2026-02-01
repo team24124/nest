@@ -2,7 +2,6 @@ from stats.calculations.epa import calculate_epa
 from stats.data.scores import MatchData
 from stats.teams.Team import Team
 
-
 def update_epa_from_match(
     match: MatchData,
     red_teams: list[Team],

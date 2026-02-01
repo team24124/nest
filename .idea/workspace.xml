@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Endgame will consist of park.">
-      <change afterPath="$PROJECT_DIR$/app/widget/LiveEpaConsole.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/calculations/epa_live.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/data/live_epa_state.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/events/live_event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/window/TeamStatWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/window/TeamStatWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/window/TeamWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/window/TeamWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphing/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing/graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/calculations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/calculations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/events/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/events/__init__.py" afterDir="false" />
-    </list>
+    <list default="true" id="e504a3ea-3278-4212-95c0-97a136072396" name="Changes" comment="Created Live EPA: self updates every 3 minutes, it can also create line graphs for the teams you select." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -302,7 +290,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766634428466</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Created Live EPA: self updates every 3 minutes, it can also create line graphs for the teams you select.">
+      <option name="closed" value="true" />
+      <created>1769917751906</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1769917751906</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -332,6 +328,7 @@
     <MESSAGE value="Adapted scoring for new season, and fixed minor bugs" />
     <MESSAGE value="Fixed the end game EPA, and a minor bug when it came to new teams" />
     <MESSAGE value="Endgame will consist of park." />
-    <option name="LAST_COMMIT_MESSAGE" value="Endgame will consist of park." />
+    <MESSAGE value="Created Live EPA: self updates every 3 minutes, it can also create line graphs for the teams you select." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Live EPA: self updates every 3 minutes, it can also create line graphs for the teams you select." />
   </component>
 </project>

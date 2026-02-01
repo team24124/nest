@@ -46,7 +46,6 @@ def get_team_from_json(team_data: dict) -> Team:
     historical_auto_opr = team_data['historical_auto_opr']
     historical_tele_opr = team_data['historical_tele_opr']
     historical_end_opr = team_data['historical_end_opr']
-
     # Create team object
     team = Team(team_number, team_name, country, state_province, city, home_region)
     team.games_played = games_played
