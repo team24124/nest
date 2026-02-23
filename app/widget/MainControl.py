@@ -14,6 +14,10 @@ from stats.events import get_event, get_division_events
 from stats.export import export_team_data
 from stats.teams import get_team_data_from_event
 from stats.teams.Team import Team
+from stats.data.manual_import import import_manual_data
+from stats.calculations.opr import update_opr
+from stats.calculations.epa import update_epa
+import os
 
 
 class MainControl(tk.Frame):
@@ -29,6 +33,7 @@ class MainControl(tk.Frame):
         event_label = tk.Label(event_frame, text="Event Code", font=("Segoe UI", 9))
         self.event_entry = ttk.Entry(event_frame, width=20)
         self.event_submit = tk.Button(event_frame, text="Check", command=self.on_click)
+        self.manual_button = tk.Button(event_frame, text="Manual CSV", command=self.on_manual_click)
 
         export_frame = tk.Frame(self)
         self.export_button = tk.Button(export_frame, text="Export to JSON", state="disabled", command=self.export_json)
@@ -37,6 +42,7 @@ class MainControl(tk.Frame):
         event_label.grid(row=0, column=0, padx=5)
         self.event_entry.grid(row=0, column=1, padx=5)
         self.event_submit.grid(row=0, column=2, padx=5)
+        self.manual_button.grid(row=0, column=3, padx=5)
         # Processing Label
         self.processing_label = tk.Label(self, text="Processing Data...")
 
@@ -66,6 +72,74 @@ class MainControl(tk.Frame):
                                         message=f"The event code you entered ({event_code}) could not be found")
             print(f"The event ({event_code}) you entered could not be found.", file=sys.stderr)
 
+    def on_manual_click(self):
+        csv_path = os.path.join("stats", "events", "manual_matches.csv")
+        if not os.path.exists(csv_path):
+            tkinter.messagebox.showerror("Error", f"Could not find {csv_path} in the project directory.")
+            return
+
+        print(f"Loading manual data from {csv_path}...")
+        try:
+            team_list, game_matrix, event_data = import_manual_data(csv_path)
+            
+            # 1. Mock an Event object
+            mock_event_data = {
+                'code': 'MANUAL',
+                'name': 'Manual CSV Data',
+                'country': 'Local',
+                'stateprov': 'Local',
+                'city': 'Local',
+                'dateStart': '2025-01-01',
+                'dateEnd': '2025-01-01'
+            }
+            # We override create_team_list temporarily or just set team_list manually
+            # Since Event.__init__ calls create_team_list, we might need a workaround.
+            # Let's create a minimal class instead.
+            
+            class MockEvent:
+                def __init__(self, code, name, team_list):
+                    self.event_code = code
+                    self.name = name
+                    self.team_list = team_list
+                    self.country = "Local"
+                    self.state_province = "Local"
+                    self.city = "Local"
+                    self.dateStart = "2025-01-01"
+            
+            event = MockEvent("MANUAL", "Manual CSV Data", team_list)
+            
+            # 2. Create Teams
+            team_data = {}
+            avg_total, avg_auto, avg_tele = get_start_avg()
+            for t_num in team_list:
+                t = Team(t_num, f"Team {t_num}", "US", "CA", "City", "Region")
+                t.update_epa(avg_total / 2, avg_auto / 2, avg_tele / 2)
+                team_data[t_num] = t
+
+            # 3. Calculations
+            update_opr(team_list, game_matrix, event_data, team_data)
+            update_epa(team_list, game_matrix, event_data, team_data)
+
+            # 4. Update Controller
+            self.controller.shared_data["event_code"] = "MANUAL"
+            self.controller.shared_data["event"] = event
+            self.controller.shared_data["teams"] = team_data
+
+            # 5. Notify UI
+            broadcast_event(self.root, "<<event_code_updated>>")
+            broadcast_event(self.root, "<<team_stats_updated>>")
+            
+            # Enable buttons
+            self.export_button.config(state="normal")
+            self.refresh_button.config(state="normal")
+            
+            print("Manual data successfully loaded and calculated.")
+            tkinter.messagebox.showinfo("Success", f"Loaded {len(team_list)} teams from CSV.")
+
+        except Exception as e:
+            traceback.print_exc()
+            tkinter.messagebox.showerror("Error", f"Failed to load manual data: {e}")
+
     def export_json(self):
         file_path = filedialog.asksaveasfilename(
             defaultextension=".json",
@@ -81,7 +155,8 @@ class MainControl(tk.Frame):
 
     def handle_event_update(self, e):
         event: Event = self.controller.shared_data["event"]
-        self.get_data(event)
+        if self.controller.shared_data["event_code"] != "MANUAL":
+            self.get_data(event)
         pass
 
 

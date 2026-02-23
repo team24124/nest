@@ -50,7 +50,7 @@ class EventDashboard(tk.Frame):
         self.num_teams_label.config(text=f"Number of Teams: {len(event.team_list)}")
 
         self.name_label.bind("<Button-1>", lambda e2: webbrowser.open_new(
-            f"https://ftc-events.firstinspires.org/{self.controller.shared_data["season"]}/{event_code}"))
+            f"https://ftc-events.firstinspires.org/{self.controller.shared_data['season']}/{event_code}"))
 
         self.event_info_frame.grid(row=2, column=0, padx=5, pady=5, sticky="news")
         self.teams_button.grid(row=3, column=0, padx=5, pady=5, sticky="sw")

@@ -34,7 +34,7 @@ class LiveEpaConsole(tk.Frame):
         event_code = self.controller.shared_data.get("event_code")
         team_data = self.controller.shared_data.get("teams")
 
-        if event_code and team_data:
+        if event_code and team_data and event_code != "MANUAL":
             # FIX: Start the logic in a background thread to prevent freezing
             threading.Thread(target=self.run_logic, args=(event_code, team_data), daemon=True).start()
 
