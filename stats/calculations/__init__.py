@@ -132,7 +132,7 @@ def update_teams_at_event(event: Event, team_data: dict[int, Team], avg_total: f
 
             # Add starting averages to team data
             team.update_game_played("START")
-            team.update_epa(avg_total, avg_auto, avg_tele)
+            team.update_epa(avg_total, avg_auto, avg_tele, 0)
 
             # Save to team data
             team_data[team_number] = team

@@ -95,6 +95,12 @@ def update_epa(team_list: list[int], game_matrix: list[list[int]], event_data: E
         blue_tele_score = match_data.blue_alliance.tele_score
         red_tele_epa = team1.epa_tele_total + team2.epa_tele_total
         blue_tele_epa = team3.epa_tele_total + team4.epa_tele_total
+        
+        # Endgame components
+        red_end_score = red_score - red_auto_score - red_tele_score
+        blue_end_score = blue_score - blue_auto_score - blue_tele_score
+        red_end_epa = team1.epa_endgame_total + team2.epa_endgame_total
+        blue_end_epa = team3.epa_endgame_total + team4.epa_endgame_total
 
         # Calculate each change
         change_red, change_blue = calculate_epa(red_epa, blue_epa,
@@ -103,14 +109,16 @@ def update_epa(team_list: list[int], game_matrix: list[list[int]], event_data: E
                                                           red_auto_score, blue_auto_score, games_played)
         change_red_tele, change_blue_tele = calculate_epa(red_tele_epa, blue_tele_epa,
                                                           red_tele_score, blue_tele_score, games_played)
+        change_red_end, change_blue_end = calculate_epa(red_end_epa, blue_end_epa,
+                                                        red_end_score, blue_end_score, games_played)
         # Update match and EPA for red alliance
         for j in range(0, 2):
             team = teams[j]
-            team.update_epa(change_red, change_red_auto, change_red_tele)
+            team.update_epa(change_red, change_red_auto, change_red_tele, change_red_end)
 
         # Update match and EPA for blue alliance
         for j in range(2, 4):
             team = teams[j]
-            team.update_epa(change_blue, change_blue_auto, change_blue_tele)
+            team.update_epa(change_blue, change_blue_auto, change_blue_tele, change_blue_end)
 
         game_index += 1

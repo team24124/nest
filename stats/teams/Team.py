@@ -17,10 +17,11 @@ class Team:
         self.epa_total = 0
         self.epa_auto_total = 0
         self.epa_tele_total = 0
+        self.epa_endgame_total = 0
         self.historical_epa = []
         self.historical_auto_epa = []
         self.historical_tele_epa = []
-
+        self.historical_endgame_epa = []
         self.historical_opr = []
         self.historical_auto_opr = []
         self.historical_tele_opr = []
@@ -52,12 +53,13 @@ class Team:
         self.matches.append(match_name)
         self.games_played += 1
 
-    def update_epa(self, delta_epa, delta_epa_auto, delta_epa_tele):
+    def update_epa(self, delta_epa, delta_epa_auto, delta_epa_tele, delta_epa_endgame):
         """
         Update all EPA values for current team object
         :param delta_epa: Calculated CHANGE in EPA
         :param delta_epa_auto: Calculated CHANGE in Auto EPA
         :param delta_epa_tele: Calculated CHANGE in TeleOp EPA
+        :param delta_epa_endgame: Calculated CHANGE in Endgame EPA
         :return: None
         """
         new_epa = self.epa_total + delta_epa
@@ -71,6 +73,10 @@ class Team:
         new_epa_tele = self.epa_tele_total + delta_epa_tele
         self.epa_tele_total = new_epa_tele
         self.historical_tele_epa.append(new_epa_tele)
+
+        new_epa_endgame = self.epa_endgame_total + delta_epa_endgame
+        self.epa_endgame_total = new_epa_endgame
+        self.historical_endgame_epa.append(new_epa_endgame)
 
 
     def update_opr(self, opr_total, opr_auto, opr_tele, opr_end):
