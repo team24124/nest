@@ -5,7 +5,7 @@ import requests
 import math
 from datetime import datetime
 
-# Ensure current directory is in path (nest root)
+# Path to nest root
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from stats.data import get_auth, get_config
